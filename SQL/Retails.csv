@@ -1,4 +1,4 @@
-﻿Record_ID,Order_ID,Name,Gender,Product_Id,Price
+﻿record_id,order_id,name,gender,product_id,price
 1,1111,Aiden Powell,Male,1,406
 2,1112,Lou Garcia,Male,2,866
 3,1113,Melissa Armstrong,Female,3,718
