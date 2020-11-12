@@ -43,8 +43,27 @@ FROM retails
 SELECT order_id, name, product_id, price, NTILE(10) OVER (ORDER BY price) AS NTile_Product_Price 
 FROM retails
 
-SELECT order_id, name, product_id, price, percent_rank() OVER (PARTITION BY order_id ORDER BY price) AS Row_Number_Product_Price 
+SELECT order_id, name, product_id, price, PERCENT_RANK() OVER (PARTITION BY order_id ORDER BY price) AS Row_Number_Product_Price 
 FROM retails
+
+SELECT order_id, name, product_id, price, 
+LAG(price,1) OVER (PARTITION BY order_id ORDER BY price) AS LAG_Product_Price,
+LEAD(price,1) OVER (PARTITION BY order_id ORDER BY price) AS LEAD_Product_Price
+FROM retails
+
+
+SELECT order_id, name, product_id, price, 
+FIRST_VALUE(price) OVER (PARTITION BY order_id) AS FIRST_VALUE_Product_Price,
+LAST_VALUE(price) OVER (PARTITION BY order_id) AS LAST_VALUE_Product_Price,
+NTH_VALUE(price,3) OVER (PARTITION BY order_id) AS LAST_VALUE_Product_Price
+FROM retails
+
+
+SELECT order_id, name, product_id, price, 
+NTH_VALUE(price,3) OVER (PARTITION BY order_id) AS NTH_VALUE_Product_Price
+FROM retails
+
+
 
 
 
