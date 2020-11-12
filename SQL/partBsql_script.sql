@@ -37,6 +37,14 @@ FROM retails
 SELECT order_id, name, product_id, price, CUME_DIST() OVER (PARTITION BY order_id ORDER BY price) AS Dense_Rank_Product_Price 
 FROM retails
 
-SELECT order_id, name, product_id, price, ROW_NUMBER() OVER (PARTITION BY order_id ORDER BY price) AS Dense_Rank_Product_Price 
+SELECT order_id, name, product_id, price, ROW_NUMBER() OVER (PARTITION BY order_id ORDER BY price) AS Row_Number_Product_Price 
 FROM retails
+
+SELECT order_id, name, product_id, price, NTILE(10) OVER (ORDER BY price) AS NTile_Product_Price 
+FROM retails
+
+SELECT order_id, name, product_id, price, percent_rank() OVER (PARTITION BY order_id ORDER BY price) AS Row_Number_Product_Price 
+FROM retails
+
+
 
